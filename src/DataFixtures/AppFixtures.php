@@ -76,14 +76,15 @@ class AppFixtures extends Fixture
         // initiate the faker bundle
         $faker = Faker\Factory::create('fr_FR');
 
-        // create 30 tasks
-        for ($i = 0; $i < 30; $i++) {
+        // create 20 tasks without user (old tasks)
+        for ($i = 0; $i < 20; $i++) {
 
             // random values
             $randDone = false;
             if(1 === rand(0,1)) {
                 $randDone = true;
             }
+            $randUserNumber = rand(0,9);
 
             $task = new Task();
             $task->setCreatedAt(
@@ -97,7 +98,34 @@ class AppFixtures extends Fixture
             );
             $task->toggle($randDone);
             $manager->persist($task);
-            $this->addReference('[task] ' . $i, $task);
+
+        }
+
+        // create 30 tasks with a user
+        for ($i = 0; $i < 30; $i++) {
+
+            // random values
+            $randDone = false;
+            if(1 === rand(0,1)) {
+                $randDone = true;
+            }
+            $randUserNumber = rand(0,9);
+
+            $task = new Task();
+            $task->setCreatedAt(
+                $faker->dateTimeBetween($startDate = '-1 years', $endDate = 'now', $timezone = 'Europe/Paris')
+            );
+            $task->setTitle(
+                preg_replace("#.$#", "", $faker->sentence($nbWords = 3, $variableNbWords = true))
+            );
+            $task->setContent(
+                $faker->sentence($nbWords = 10, $variableNbWords = true)
+            );
+            $task->toggle($randDone);
+            $task->setUser(
+                $this->getReference('[user] ' . $randUserNumber)
+            );
+            $manager->persist($task);
 
         }
 
