@@ -15,7 +15,14 @@ class TaskController extends AbstractController
      */
     public function listAction()
     {
-        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository(Task::class)->findAll()]);
+        $tasks = $this->getDoctrine()->getRepository(Task::class)->findAll();
+
+        return $this->render(
+            'task/list.html.twig',
+            [
+                'tasks' => $tasks
+            ]
+        );
     }
 
     /**
@@ -29,8 +36,9 @@ class TaskController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
 
+            $em = $this->getDoctrine()->getManager();
+            $task->setUser($this->getUser());
             $em->persist($task);
             $em->flush();
 
