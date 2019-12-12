@@ -42,6 +42,14 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @var array
+     *
+     * @ORM\Column(type="json")
+     * @Assert\NotBlank(message="Vous devez choisir un rôle.")
+     */
+    private $roles = [];
+
+    /**
      * @ORM\OneToMany(targetEntity="App\Entity\Task", mappedBy="user", orphanRemoval=true)
      */
     private $tasks;
@@ -91,9 +99,34 @@ class User implements UserInterface
         $this->email = $email;
     }
 
-    public function getRoles()
+    /**
+     * Returns the roles or permissions granted to the user for security.
+     */
+    public function getRoles(): array
     {
-        return array('ROLE_USER');
+        $roles = $this->roles;
+
+        // guarantees that a user always has at least one role for security
+        if (empty($roles)) {
+            $roles[] = 'ROLE_USER';
+        }
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
+    public function getRoleName()
+    {
+        if($this->getRoles()[0] === 'ROLE_ADMIN') {
+            return 'Administrateur';
+        }
+        if($this->getRoles()[0] === 'ROLE_USER') {
+            return 'Utilisateur';
+        }
     }
 
     public function eraseCredentials()

@@ -46,6 +46,7 @@ class AppFixtures extends Fixture
         $user->setUsername('admin');
         $user->setPassword($this->passwordEncoder->encodePassword($user, 'admin')); 
         $user->setEmail($faker->email);
+        $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);
 
         // create 10 users
@@ -55,6 +56,7 @@ class AppFixtures extends Fixture
             $user->setUsername($faker->userName);
             $user->setPassword($this->passwordEncoder->encodePassword($user, 'user')); 
             $user->setEmail($faker->email);
+            $user->setRoles(['ROLE_USER']);
             $manager->persist($user);
             $this->addReference('[user] ' . $i, $user);
 
