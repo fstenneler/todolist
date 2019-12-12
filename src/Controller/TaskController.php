@@ -7,6 +7,7 @@ use App\Form\TaskType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class TaskController extends AbstractController
 {
@@ -91,12 +92,24 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($task);
-        $em->flush();
+        // users can delete only their own tasks
+        // anonymous tasks can be deleted only by admin
+        if(
+            $task->getUser() === $this->getUser()
+            || ($task->getUser() === null && $this->isGranted('ROLE_ADMIN'))
+        ) {
 
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($task);
+            $em->flush();
+    
+            $this->addFlash('success', 'La tâche a bien été supprimée.');
 
-        return $this->redirectToRoute('task_list');
+            return $this->redirectToRoute('task_list');
+
+        }
+
+        throw new UnauthorizedHttpException('Vous n\'êtes pas autorisé à supprimer cette tâche.');
+       
     }
 }
