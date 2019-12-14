@@ -12,7 +12,14 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Table("user")
  * @ORM\Entity
- * @UniqueEntity("email")
+ * @UniqueEntity(
+ *     fields={"username"},
+ *     message="Le nom d'utilisateur{{ value }} est déjà utilisé."
+ * )
+ * @UniqueEntity(
+ *     fields={"email"},
+ *     message="L'adresse email {{ value }} est déjà utilisée."
+ * )
  */
 class User implements UserInterface
 {
@@ -45,7 +52,6 @@ class User implements UserInterface
      * @var array
      *
      * @ORM\Column(type="json")
-     * @Assert\NotBlank(message="Vous devez choisir un rôle.")
      */
     private $roles = [];
 
@@ -121,12 +127,14 @@ class User implements UserInterface
 
     public function getRoleName()
     {
+        $roleName = null;        
         if($this->getRoles()[0] === 'ROLE_ADMIN') {
-            return 'Administrateur';
+            $roleName = 'Administrateur';
         }
         if($this->getRoles()[0] === 'ROLE_USER') {
-            return 'Utilisateur';
+            $roleName = 'Utilisateur';
         }
+        return $roleName;
     }
 
     public function eraseCredentials()
