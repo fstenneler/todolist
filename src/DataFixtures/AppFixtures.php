@@ -45,11 +45,19 @@ class AppFixtures extends Fixture
         $user = new User();
         $user->setUsername('admin');
         $user->setPassword($this->passwordEncoder->encodePassword($user, 'admin')); 
-        $user->setEmail($faker->email);
+        $user->setEmail('admin@orlinstreet.rocks');
         $user->setRoles(['ROLE_ADMIN']);
         $manager->persist($user);
 
-        // create 10 users
+        // create 1 user for tests
+        $user = new User();
+        $user->setUsername('user');
+        $user->setPassword($this->passwordEncoder->encodePassword($user, 'user')); 
+        $user->setEmail('user@orlinstreet.rocks');
+        $user->setRoles(['ROLE_USER']);
+        $manager->persist($user);
+
+        // create 10 fake users
         for ($i = 0; $i < 10; $i++) {
 
             $user = new User();
