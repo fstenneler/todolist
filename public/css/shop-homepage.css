@@ -6,6 +6,22 @@
 
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+}
+
+.ui-widget, .ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.ui-widget {
+    color: #212529;
 }
 
 .slide-image {
@@ -46,17 +62,74 @@ body {
 
 .thumbnail {
     padding: 0;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
 }
 
-.thumbnail .caption-full {
-    padding: 9px;
+.ui-widget.ui-widget-content {
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.thumbnail .caption, .thumbnail .caption-full {
+    padding: 0;
     color: #333;
+    position: relative;
 }
 
-.thumbnail .title {
-    display: inline-block;
-    width: 90%;
-    overflow: hidden;
+.thumbnail h4 {
+    margin: 0;
+}
+
+.ui-widget-header {
+    border: 0;
+}
+
+.thumbnail .is-done {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    padding-top: 5px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+    font-size: 15px;
+}
+
+.thumbnail .green {
+    background-color: #398439;
+    border: 1px solid #255625;
+}
+
+.thumbnail .dark {
+    background-color: #343a40;
+    border: 1px solid #343a40;
+}
+
+.portlet-header {
+    background: transparent;
+    text-align: center;
+    padding: 35px 9px 0 9px;
+}
+
+.thumbnail .date {
+    color: #C0C0C0;
+    margin: 0;
+}
+
+.thumbnail .author {
+    color: #C0C0C0;
+}
+
+.thumbnail .inner {
+    padding: 15px;
+    text-align: center;
+}
+
+.portlet-content {
+    padding: 0;
 }
 
 .thumbnail .content {
@@ -64,14 +137,32 @@ body {
     overflow: hidden;
 }
 
+.thumbnail .footer {
+    background: rgba(0,0,0,.03);
+    border-top: 1px solid rgba(0,0,0,.125);
+    padding: 10px;
+    text-align: center;
+}
+
+.thumbnail .footer form {
+    display: inline-block;
+}
+
 .thumbnail .btn {
-    margin-left: 8px;
+    margin: 0 4px 0 4px;
+}
+
+.thumbnail .btn-success {
+    background-color: #398439;
+    border: 1px solid #255625;
+}
+
+.thumbnail .btn-dark {
+    background-color: #343a40;
+    border: 1px solid #343a40;
+    color: white;
 }
 
 footer {
     margin: 50px 0;
-}
-
-.gray {
-    color: #C0C0C0;
 }
