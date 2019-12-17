@@ -21,8 +21,12 @@ body {
     border-radius: 4px;
 }
 
+.task-header {
+    height: 50px;
+}
+
 .caption {
-    height: 130px;
+    /*height: 130px;*/
     overflow: hidden;
 }
 
@@ -47,6 +51,21 @@ body {
 .thumbnail .caption-full {
     padding: 9px;
     color: #333;
+}
+
+.thumbnail .title {
+    display: inline-block;
+    width: 90%;
+    overflow: hidden;
+}
+
+.thumbnail .content {
+    height: 90px;
+    overflow: hidden;
+}
+
+.thumbnail .btn {
+    margin-left: 8px;
 }
 
 footer {
