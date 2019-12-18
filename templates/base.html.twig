@@ -13,8 +13,16 @@
         <!-- Bootstrap Core CSS -->
         <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
 
+        <!-- JQuery UI CSS -->
+        <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
+
+        <!-- Kanban CSS -->
+        <link href="{{ asset('css/kanban.css') }}" rel="stylesheet">
+
         <!-- Custom CSS -->
         <link href="{{ asset('css/shop-homepage.css') }}" rel="stylesheet">
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -25,32 +33,12 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-light navbar-fixed-top" style="background-color: #e3f2fd;" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">To Do List app</a>
 
-                    <img src="{{ asset('img/Logo_OpenClassrooms.png') }}" alt="OpenClassrooms" />
-                </div>
-            </div>
-        </nav>
+        <!-- Navbar -->
+        {% include '_navbar.html.twig' %}
 
         <!-- Page Content -->
-        <div class="container">
-            <div class="row">
-
-                {% if is_granted('ROLE_ADMIN') %}
-                    <a href="{{ path('user_create') }}" class="btn btn-primary">Créer un utilisateur</a>
-                {% endif %}
-                
-                {% if app.user %}
-                <a href="{{ path('app_logout') }}" class="pull-right btn btn-danger">Se déconnecter</a>
-                {% endif %}
-
-                {% if not app.user and 'login' != app.request.attributes.get('_route') %}
-                <a href="{{ path('app_login') }}" class="btn btn-success">Se connecter</a>
-                {% endif %}
-            </div>
+        <div class="container main-container">
 
             <div class="row">
                 <div class="col-md-12">
@@ -95,6 +83,8 @@
         </div>
 
         <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
+        <script src="{{ asset('js/jquery-ui.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+        <script src="{{ asset('js/kanban.js') }}"></script>
     </body>
 </html>
