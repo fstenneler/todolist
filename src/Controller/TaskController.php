@@ -12,11 +12,23 @@ use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/tasks", name="task_list")
+     * @Route(
+     *   "/tasks/{filter}",
+     *   name="task_list",
+     *   defaults={"filter" = null},
+     *   requirements={"filter"="^(to-do|done)$"}
+     * )
      */
-    public function listAction()
+    public function listAction($filter)
     {
-        $tasks = $this->getDoctrine()->getRepository(Task::class)->findAll();
+        $parameters = [];
+        if($filter === 'to-do') {
+            $parameters = ['isDone' => 0];
+        }
+        if($filter === 'done') {
+            $parameters = ['isDone' => 1];
+        }
+        $tasks = $this->getDoctrine()->getRepository(Task::class)->findBy($parameters);
 
         return $this->render(
             'task/list.html.twig',
