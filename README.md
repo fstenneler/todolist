@@ -13,8 +13,7 @@ ToDo List is an application that manages tasks for a group of users.
 ### Codacy
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/18cb4ae222854aad885a3e44d49ac8c9)](https://www.codacy.com/manual/fstenneler/bilemo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fstenneler/bilemo&amp;utm_campaign=Badge_Grade)
 
-Installing the app
-------------------
+## Installing the app
 
 ### Download the repository
 
@@ -104,7 +103,6 @@ Please edit this user after your first connection with a new password.
 All created demo users have their password set to "user".
 Erase these fake accounts and create your own accounts by using user management.
 
-Contributing
-------------
+## Contributing
 
 Before contributing to ToDo List, please take a look at the [CONTRIBUTING.md](CONTRIBUTING.md) document.
