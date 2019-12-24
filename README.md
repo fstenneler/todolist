@@ -1,4 +1,6 @@
-# ToDo List
+ToDo List
+---------
+
 ## Application edited by ToDo & Co
 
 Online version [here](http://todolist.orlinstreet.rocks).
@@ -8,10 +10,10 @@ ToDo List is an application that manages tasks for a group of users.
 ## Certifications
 
 ### Symfony Insights
-[![SymfonyInsight](https://insight.symfony.com/projects/a0f0055c-9247-4db5-8c55-11a5fd3badaa/big.svg)](https://insight.symfony.com/projects/a0f0055c-9247-4db5-8c55-11a5fd3badaa)
+[![SymfonyInsight](https://insight.symfony.com/projects/71839e77-8bf2-4ea5-9fbb-78160269e473/big.svg)](https://insight.symfony.com/projects/71839e77-8bf2-4ea5-9fbb-78160269e473)
 
 ### Codacy
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/18cb4ae222854aad885a3e44d49ac8c9)](https://www.codacy.com/manual/fstenneler/bilemo?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fstenneler/bilemo&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/764c09ca841f46989c2bb447d86e2e5d)](https://www.codacy.com/manual/fstenneler/todolist?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fstenneler/todolist&amp;utm_campaign=Badge_Grade)
 
 ## Installing the app
 
