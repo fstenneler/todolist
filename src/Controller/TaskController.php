@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class TaskController extends AbstractController
 {
@@ -19,7 +20,7 @@ class TaskController extends AbstractController
      *   requirements={"filter"="^(to-do|done)$"}
      * )
      */
-    public function listAction($filter)
+    public function listAction(SessionInterface $session, $filter)
     {
         $parameters = [];
         if($filter === 'to-do') {
@@ -28,7 +29,12 @@ class TaskController extends AbstractController
         if($filter === 'done') {
             $parameters = ['isDone' => 1];
         }
-        $tasks = $this->getDoctrine()->getRepository(Task::class)->findBy($parameters);
+        $tasks = $this->getDoctrine()
+            ->getRepository(Task::class)
+            ->findBy($parameters);
+
+        //store this route in session
+        $session->set('last-tasklist-filter', $filter);
 
         return $this->render(
             'task/list.html.twig',
@@ -41,7 +47,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/create", name="task_create")
      */
-    public function createAction(Request $request)
+    public function createAction(Request $request, SessionInterface $session)
     {
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
@@ -57,16 +63,23 @@ class TaskController extends AbstractController
 
             $this->addFlash('success', 'La tâche a été bien été ajoutée.');
 
-            return $this->redirectToRoute('task_list');
+            return $this->redirectToRoute(
+                'task_list', [
+                    'filter' => $session->get('last-tasklist-filter', null)
+                ]
+            );
         }
 
-        return $this->render('task/create.html.twig', ['form' => $form->createView()]);
+        return $this->render(
+            'task/create.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
-    public function editAction(Task $task, Request $request)
+    public function editAction(Task $task, Request $request, SessionInterface $session)
     {
         $form = $this->createForm(TaskType::class, $task);
 
@@ -77,7 +90,11 @@ class TaskController extends AbstractController
 
             $this->addFlash('success', 'La tâche a bien été modifiée.');
 
-            return $this->redirectToRoute('task_list');
+            return $this->redirectToRoute(
+                'task_list', [
+                    'filter' => $session->get('last-tasklist-filter', null)
+                ]
+            );
         }
 
         return $this->render('task/edit.html.twig', [
@@ -89,20 +106,24 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/toggle", name="task_toggle")
      */
-    public function toggleTaskAction(Task $task)
+    public function toggleTaskAction(Task $task, SessionInterface $session)
     {
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
 
         $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
 
-        return $this->redirectToRoute('task_list');
+        return $this->redirectToRoute(
+            'task_list', [
+                'filter' => $session->get('last-tasklist-filter', null)
+            ]
+        );
     }
 
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
-    public function deleteTaskAction(Task $task)
+    public function deleteTaskAction(Task $task, SessionInterface $session)
     {
         // users can delete only their own tasks
         // anonymous tasks can be deleted only by admin
@@ -117,8 +138,12 @@ class TaskController extends AbstractController
     
             $this->addFlash('success', 'La tâche a bien été supprimée.');
 
-            return $this->redirectToRoute('task_list');
-
+            return $this->redirectToRoute(
+                'task_list', [
+                    'filter' => $session->get('last-tasklist-filter', null)
+                ]
+            );
+    
         }
 
         throw new UnauthorizedHttpException('Vous n\'êtes pas autorisé à supprimer cette tâche.');

@@ -6,6 +6,9 @@ use App\Entity\User;
 use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
+/**
+ * Authentication utility for unit and functional tests
+ */
 class AuthenticationUtil
 {
     private $client;
@@ -53,7 +56,7 @@ class AuthenticationUtil
     }
 
     /**
-     * Return credentials
+     * Return test user credentials
      *
      * @return array credentials[]
      */

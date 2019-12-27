@@ -6,12 +6,20 @@ use App\Entity\User;
 use App\Tests\AuthenticationUtil;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * User controller unit tests
+ */
 class UserControllerTest extends WebTestCase
 {
     private $client = null;
     private $entityManager;
     private $auth;
 
+    /**
+     * Set up the tests
+     *
+     * @return void
+     */
     public function setUp()
     {
         $this->client = static::createClient();

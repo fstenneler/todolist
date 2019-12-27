@@ -8,6 +8,9 @@ use Symfony\Component\Validator\Validation;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 
+/**
+ * User form unit tests
+ */
 class UserTypeTest extends TypeTestCase
 {
 

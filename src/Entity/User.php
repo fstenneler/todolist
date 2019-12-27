@@ -65,48 +65,97 @@ class User implements UserInterface
         $this->tasks = new ArrayCollection();
     }
 
+    /**
+     * Get user id
+     *
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
+    /**
+     * Get user name
+     *
+     * @return string
+     */
     public function getUsername()
     {
         return $this->username;
     }
 
+    /**
+     * Set user name
+     *
+     * @param string $username
+     * @return self
+     */
     public function setUsername($username)
     {
         $this->username = $username;
-    }
+ 
+        return $this;
+   }
 
+    /**
+     * Get salt
+     *
+     * @return string
+     */
     public function getSalt()
     {
         return null;
     }
 
+    /**
+     * Get user password
+     *
+     * @return string
+     */
     public function getPassword()
     {
         return $this->password;
     }
 
+    /**
+     * Set user password
+     *
+     * @param string $password
+     * @return void
+     */
     public function setPassword($password)
     {
         $this->password = $password;
     }
 
+    /**
+     * Get user email
+     *
+     * @return string
+     */
     public function getEmail()
     {
         return $this->email;
     }
 
+    /**
+     * Set user email
+     *
+     * @param string $email
+     * @return self
+     */
     public function setEmail($email)
     {
         $this->email = $email;
+
+        return $this;
     }
 
     /**
      * Returns the roles or permissions granted to the user for security.
+     *
+     * @return array
      */
     public function getRoles(): array
     {
@@ -120,28 +169,50 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(array $roles): void
+    /**
+     * Set user roles
+     *
+     * @param array $roles
+     * @return self
+     */
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
+
+        return $this;
     }
 
+    /**
+     * Get user role name
+     *
+     * @return string
+     */
     public function getRoleName()
     {
-        $roleName = null;        
-        if($this->getRoles()[0] === 'ROLE_ADMIN') {
-            $roleName = 'Administrateur';
+        $roleName = null;
+        foreach($this->getRoles() as $role) {
+            if($this->getRoles()[0] === 'ROLE_ADMIN') {
+                $roleName .= ', Administrateur';
+            }
+            if($this->getRoles()[0] === 'ROLE_USER') {
+                $roleName .= ', Utilisateur';
+            }
         }
-        if($this->getRoles()[0] === 'ROLE_USER') {
-            $roleName = 'Utilisateur';
-        }
-        return $roleName;
+        return preg_replace("#^, #", "", $roleName);
     }
 
+    /**
+     * Erase user credentials
+     *
+     * @return void
+     */
     public function eraseCredentials()
     {
     }
 
     /**
+     * Get user tasks
+     * 
      * @return Collection|Task[]
      */
     public function getTasks(): Collection
@@ -149,6 +220,12 @@ class User implements UserInterface
         return $this->tasks;
     }
 
+    /**
+     * Add task
+     *
+     * @param Task $task
+     * @return self
+     */
     public function addTask(Task $task): self
     {
         if (!$this->tasks->contains($task)) {
@@ -158,6 +235,13 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * Remove task
+     *
+     * @param Task $task
+     * @return self
+     */
 
     public function removeTask(Task $task): self
     {

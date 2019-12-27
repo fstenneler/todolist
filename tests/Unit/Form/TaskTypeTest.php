@@ -6,6 +6,9 @@ use App\Entity\Task;
 use App\Form\TaskType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * Task form unit tests
+ */
 class TaskTypeTest extends TypeTestCase
 {
 

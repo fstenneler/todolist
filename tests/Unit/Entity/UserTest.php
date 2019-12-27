@@ -6,6 +6,9 @@ use App\Entity\Task;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * User entity unit tests
+ */
 class UserTest extends TestCase
 {
 

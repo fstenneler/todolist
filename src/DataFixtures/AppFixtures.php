@@ -8,6 +8,9 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
+/**
+ * Create fixtures and persist into database
+ */
 class AppFixtures extends Fixture
 {
     private $passwordEncoder;

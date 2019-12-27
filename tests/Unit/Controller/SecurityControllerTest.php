@@ -8,11 +8,19 @@ use App\Tests\AuthenticationUtil;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Security controller unit tests
+ */
 class AppAuthenticatorTest extends WebTestCase
 {
     private $client = null;
     private $auth;
 
+    /**
+     * Set up the tests
+     *
+     * @return void
+     */
     public function setUp()
     {
         $this->client = static::createClient();

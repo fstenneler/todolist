@@ -7,6 +7,9 @@ use App\Entity\User;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
+/**
+ * Test database structure by loading fixtures
+ */
 class DatabaseTest extends WebTestCase
 {
     use FixturesTrait;
