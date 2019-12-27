@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\App\Controller;
+namespace App\Tests\Unit\Controller;
 
 use App\Entity\User;
-use App\Tests\Controller\AuthenticationUtil;
+use App\Tests\AuthenticationUtil;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class DefaultControllerTest extends WebTestCase
@@ -37,7 +37,6 @@ class DefaultControllerTest extends WebTestCase
         $this->auth->logIn();
         $crawler = $this->client->request('GET', '/');
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
-        $this->assertContains('Consulter la liste des tâches à faire', $crawler->text());
     }
 
 }

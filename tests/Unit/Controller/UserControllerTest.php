@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\App\Controller;
+namespace App\Tests\Unit\Controller;
 
 use App\Entity\User;
-use App\Tests\Controller\AuthenticationUtil;
+use App\Tests\AuthenticationUtil;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class UserControllerTest extends WebTestCase

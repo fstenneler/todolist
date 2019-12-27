@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace App\Tests\Unit\Controller;
 
 use App\Entity\User;
 use App\Controller\SecurityController;
-use App\Tests\Controller\AuthenticationUtil;
+use App\Tests\AuthenticationUtil;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
