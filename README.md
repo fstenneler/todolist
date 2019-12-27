@@ -45,7 +45,7 @@ $ composer update
 #### Set your own app passphrase
     # .env
 
-    JWT_PASSPHRASE=yourpassphrase
+    APP_SECRET=yourpassphrase
 
 ### Create database and load data
 In command line from the project directory

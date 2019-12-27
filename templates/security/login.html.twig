@@ -12,11 +12,11 @@
 
 {% block body %}
 
-    {% if error %}
-        <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
     <form method="post" class="login-form">
+
+        {% if error %}
+            <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
         <div class="form-group">
             <label for="inputUsername">Nom d'utilisateur</label>
