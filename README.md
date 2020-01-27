@@ -24,7 +24,7 @@ ToDo List is an application that manages tasks for a group of users.
 
 #### Or from Git
 ```bash
-$ git clone https://github.com/fstenneler/bilemo.git
+$ git clone https://github.com/fstenneler/todolist.git
 ```    
 
 ### Download and install Composer
@@ -40,7 +40,7 @@ $ composer update
 ### Setup the .env file (at the root of the project) with your own parameters
     # .env
 
-    DATABASE_URL=mysql://user:password@hostName:port/bilemo
+    DATABASE_URL=mysql://user:password@hostName:port/todolist
 
 #### Set your own app passphrase
     # .env
