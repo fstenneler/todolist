@@ -10,7 +10,7 @@ ToDo List is an application that manages tasks for a group of users.
 ## Certifications
 
 ### Symfony Insights
-[![SymfonyInsight](https://insight.symfony.com/projects/71839e77-8bf2-4ea5-9fbb-78160269e473/big.svg)](https://insight.symfony.com/projects/71839e77-8bf2-4ea5-9fbb-78160269e473)
+[![SymfonyInsight](http://todolist.orlinstreet.rocks/img/symfony_insight_badge.svg)](http://todolist.orlinstreet.rocks/img/symfony_insights.jpg)
 
 ### Codacy
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/764c09ca841f46989c2bb447d86e2e5d)](https://www.codacy.com/manual/fstenneler/todolist?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=fstenneler/todolist&amp;utm_campaign=Badge_Grade)
